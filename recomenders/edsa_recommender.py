@@ -27,7 +27,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Custom Libraries
-import utils.data_loader as dl
+# import utils.data_loader as dl
 
 from recommenders.collaborative_based import collab_model
 from recommenders.content_based import content_model
