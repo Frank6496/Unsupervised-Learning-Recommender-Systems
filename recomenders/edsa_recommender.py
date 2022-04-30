@@ -31,8 +31,8 @@ from utils import data_loader as dl
 
 from recommenders.collaborative_based import collab_model
 from recommenders.content_based import content_model
-from eda import eda_functions as eda
-path_to_s3 = ('../unsupervised_data/')
+from ./ import eda_functions as eda
+
 
 # Data Loading
 
@@ -59,7 +59,7 @@ def main():
     # -------------------------------------------------------------------
     page_selection = st.sidebar.selectbox("Select Page", page_options)
     if page_selection == "Recommender System":
-        title_list = dl.load_movie_titles('../unsupervised_data/unsupervised_movie_data/movies.csv')
+        title_list = dl.load_movie_titles('../resources/data/movies.csv')
         # Header contents
         st.write('# Movie Recommender Engine')
         st.write('### EXPLORE Data Science Academy Unsupervised Predict')
@@ -131,7 +131,7 @@ def main():
 
         # Most Active
             st.subheader("Most Active Users")
-            train_df = dl.load_dataframe('../unsupervised_data/unsupervised_movie_data/train.csv', index=None)
+            train_df = dl.load_dataframe('../resources/data/train.csv', index=None)
             top_user = st.checkbox('Include top user',value=False)
 
             ## include top user
@@ -223,7 +223,7 @@ def main():
         if page_selection_eda == "Genres":
             st.sidebar.markdown(open('resources/markdown/eda/genres.md').read(), unsafe_allow_html=True)
             st.subheader('Genre Distribution')
-            movies_df = dl.load_dataframe('../unsupervised_data/unsupervised_movie_data/movies.csv', index=None)
+            movies_df = dl.load_dataframe('../resources/data/movies.csv', index=None)
             genres= eda.feature_frequency(movies_df, 'genres')
             #st.write('write something here')
 
@@ -266,8 +266,8 @@ def main():
             if definitions:
                 st.write(open('resources/markdown/introduction/general_information/data_def.md', encoding='utf8').read(), unsafe_allow_html=True)
             if see_raw:
-                st.write(dl.load_dataframe('../unsupervised_data/unsupervised_movie_data/train.csv', index='userId').head(10))
-                st.write(dl.load_dataframe('../unsupervised_data/unsupervised_movie_data/movies.csv',index='movieId').head(10))
+                st.write(dl.load_dataframe('../resources/data/train.csv', index='userId').head(10))
+                st.write(dl.load_dataframe('../resources/data/movies.csv',index='movieId').head(10))
 
         if info_page_selection == "Contributors":
             st.info("Meet the amazing team members that contributed to this project.")
